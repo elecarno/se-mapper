@@ -1,0 +1,149 @@
+[gd_scene load_steps=14 format=3 uid="uid://dsilf3lddrpd1"]
+
+[ext_resource type="Script" path="res://scripts/map.gd" id="1_wcktq"]
+[ext_resource type="Script" path="res://scripts/camera_controller.gd" id="2_ndhmv"]
+[ext_resource type="Script" path="res://scripts/3d_cam.gd" id="2_qgfvi"]
+[ext_resource type="Script" path="res://scripts/top_down_cam.gd" id="3_8ltgi"]
+[ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="4_1qvbf"]
+[ext_resource type="Script" path="res://scripts/line_controller.gd" id="4_oofmq"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ucg4f"]
+
+[sub_resource type="Environment" id="Environment_w5re7"]
+background_mode = 1
+background_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.572549, 0.572549, 0.572549, 1)
+reflected_light_source = 1
+
+[sub_resource type="TorusMesh" id="TorusMesh_4pb67"]
+inner_radius = 0.8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x5u7i"]
+render_priority = 0
+shader = ExtResource("4_1qvbf")
+shader_parameter/color = Color(0.870588, 0.74902, 0.521569, 1)
+shader_parameter/specular = Color(0, 0, 0, 0.501961)
+shader_parameter/fresnel = Color(0, 0, 0, 0.301961)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="TorusMesh" id="TorusMesh_575ha"]
+inner_radius = 0.6
+outer_radius = 0.75
+
+[sub_resource type="TorusMesh" id="TorusMesh_tnmlr"]
+inner_radius = 0.4
+outer_radius = 0.55
+
+[sub_resource type="TorusMesh" id="TorusMesh_spfym"]
+inner_radius = 0.2
+outer_radius = 0.25
+
+[node name="map" type="Node3D"]
+script = ExtResource("1_wcktq")
+
+[node name="camera_controller" type="Node3D" parent="."]
+script = ExtResource("2_ndhmv")
+
+[node name="top_down_cam" type="Camera3D" parent="camera_controller"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 368.554, 0)
+projection = 1
+current = true
+size = 5500.0
+far = 7500.0
+script = ExtResource("3_8ltgi")
+
+[node name="freecam" type="Camera3D" parent="camera_controller"]
+transform = Transform3D(1, 0, 0, 0, 0.970046, 0.242921, 0, -0.242921, 0.970046, 0, 247.751, 999.781)
+far = 7500.0
+script = ExtResource("2_qgfvi")
+
+[node name="lines" type="Node3D" parent="camera_controller"]
+script = ExtResource("4_oofmq")
+
+[node name="trade" type="Node3D" parent="camera_controller/lines"]
+
+[node name="planets" type="Node3D" parent="."]
+
+[node name="stations" type="Node3D" parent="."]
+
+[node name="asteroids" type="Node3D" parent="."]
+visible = false
+
+[node name="bg" type="MeshInstance3D" parent="."]
+transform = Transform3D(1750, 0, 0, 0, 1750, 0, 0, 0, 1750, 0, -65.5159, 0)
+visible = false
+mesh = SubResource("PlaneMesh_ucg4f")
+
+[node name="sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.683298, 0.0786125, 0.725895, -0.724742, 0.193685, 0.661237, -0.0886138, -0.977909, 0.189319, 0, 106.412, 0)
+sky_mode = 1
+
+[node name="env" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w5re7")
+
+[node name="rings" type="MeshInstance3D" parent="."]
+transform = Transform3D(653.4, 0, 0, 0, 100, 0, 0, 0, 653.4, 669.855, 13.69, -124.074)
+mesh = SubResource("TorusMesh_4pb67")
+surface_material_override/0 = SubResource("ShaderMaterial_x5u7i")
+
+[node name="rings2" type="MeshInstance3D" parent="rings"]
+transform = Transform3D(1, 1.16415e-10, -1.49012e-08, 9.53674e-07, 1, 0, 0, 2.32831e-10, 1, 0, 0, 0)
+mesh = SubResource("TorusMesh_575ha")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_x5u7i")
+
+[node name="rings3" type="MeshInstance3D" parent="rings"]
+transform = Transform3D(1, 1.16415e-10, -1.49012e-08, 9.53674e-07, 1, 0, 0, 2.32831e-10, 1, 0, 0, 0)
+mesh = SubResource("TorusMesh_tnmlr")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_x5u7i")
+
+[node name="rings4" type="MeshInstance3D" parent="rings"]
+transform = Transform3D(1, 1.16415e-10, -1.49012e-08, 9.53674e-07, 1, 0, 0, 2.32831e-10, 1, 0, 0, 0)
+mesh = SubResource("TorusMesh_spfym")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_x5u7i")
+
+[node name="canvas_layer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="console" type="Label" parent="canvas_layer"]
+offset_left = 14.0
+offset_top = 684.0
+offset_right = 1096.0
+offset_bottom = 710.0
+scale = Vector2(0.75, 0.75)
+text = "from:"
+vertical_alignment = 2
+
+[node name="msg" type="Label" parent="canvas_layer"]
+offset_left = 1086.0
+offset_top = 700.0
+offset_right = 1459.0
+offset_bottom = 726.0
+scale = Vector2(0.5, 0.5)
+text = "KCO Avalon Map v1.0.1, Press TAB for keybinds"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="keybinds" type="Label" parent="canvas_layer"]
+visible = false
+offset_left = 25.0
+offset_top = 205.0
+offset_right = 317.0
+offset_bottom = 491.0
+text = "F - Switch Camera View
+H - Toggle All Labels
+R - Toggle Ore Deposits
+K - Toggle Network
+L - Toggle Av1 Rings
+
+E - Draw Routes
+V - All Distances from Station
+ESC - Clear All Routes
+
+WASD & Space & C - Freecam Controls
+Shift [Hold] - Camera \"Sprint\"
+Z [Hold] - Freecam Zoom"

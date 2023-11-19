@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8dpcsqm3x46"]
+
+[ext_resource type="Script" path="res://scripts/asteroid.gd" id="1_7mj0h"]
+[ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="3_p7dah"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_7tjyw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oukg5"]
+render_priority = 0
+shader = ExtResource("3_p7dah")
+shader_parameter/color = Color(0.8, 0.690196, 0.0627451, 1)
+shader_parameter/specular = Color(0, 0, 0, 0.501961)
+shader_parameter/fresnel = Color(0, 0, 0, 0.301961)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[node name="asteroid" type="Node3D"]
+script = ExtResource("1_7mj0h")
+
+[node name="model" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("SphereMesh_7tjyw")
+surface_material_override/0 = SubResource("ShaderMaterial_oukg5")
+
+[node name="labels" type="Node3D" parent="."]
+transform = Transform3D(9.37667, 0, 0, 0, 9.37667, 0, 0, 0, 9.37667, 0, -2.88774, 0)
+
+[node name="name" type="Label3D" parent="labels"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, -0.0614705, 0)
+outline_modulate = Color(0, 0, 0, 0)
+text = "UGK Hello There"
