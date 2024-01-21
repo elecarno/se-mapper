@@ -1,11 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dsilf3lddrpd1"]
+[gd_scene load_steps=10 format=3 uid="uid://dsilf3lddrpd1"]
 
 [ext_resource type="Script" path="res://scripts/map.gd" id="1_wcktq"]
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="2_ndhmv"]
 [ext_resource type="Script" path="res://scripts/3d_cam.gd" id="2_qgfvi"]
 [ext_resource type="Script" path="res://scripts/top_down_cam.gd" id="3_8ltgi"]
-[ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="4_1qvbf"]
 [ext_resource type="Script" path="res://scripts/line_controller.gd" id="4_oofmq"]
+[ext_resource type="Script" path="res://scripts/start_screen.gd" id="6_450h0"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ucg4f"]
 
@@ -16,29 +16,8 @@ ambient_light_source = 2
 ambient_light_color = Color(0.572549, 0.572549, 0.572549, 1)
 reflected_light_source = 1
 
-[sub_resource type="TorusMesh" id="TorusMesh_4pb67"]
-inner_radius = 0.8
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_x5u7i"]
-render_priority = 0
-shader = ExtResource("4_1qvbf")
-shader_parameter/color = Color(0.870588, 0.74902, 0.521569, 1)
-shader_parameter/specular = Color(0, 0, 0, 0.501961)
-shader_parameter/fresnel = Color(0, 0, 0, 0.301961)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_offset = Vector2(0, 0)
-
-[sub_resource type="TorusMesh" id="TorusMesh_575ha"]
-inner_radius = 0.6
-outer_radius = 0.75
-
-[sub_resource type="TorusMesh" id="TorusMesh_tnmlr"]
-inner_radius = 0.4
-outer_radius = 0.55
-
-[sub_resource type="TorusMesh" id="TorusMesh_spfym"]
-inner_radius = 0.2
-outer_radius = 0.25
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fhk2"]
+bg_color = Color(0.14902, 0.14902, 0.14902, 1)
 
 [node name="map" type="Node3D"]
 script = ExtResource("1_wcktq")
@@ -47,10 +26,10 @@ script = ExtResource("1_wcktq")
 script = ExtResource("2_ndhmv")
 
 [node name="top_down_cam" type="Camera3D" parent="camera_controller"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 368.554, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2413.49, 4529.81, 443.409)
 projection = 1
 current = true
-size = 5500.0
+size = 7500.0
 far = 7500.0
 script = ExtResource("3_8ltgi")
 
@@ -82,29 +61,6 @@ sky_mode = 1
 
 [node name="env" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_w5re7")
-
-[node name="rings" type="MeshInstance3D" parent="."]
-transform = Transform3D(653.4, 0, 0, 0, 100, 0, 0, 0, 653.4, 669.855, 13.69, -124.074)
-mesh = SubResource("TorusMesh_4pb67")
-surface_material_override/0 = SubResource("ShaderMaterial_x5u7i")
-
-[node name="rings2" type="MeshInstance3D" parent="rings"]
-transform = Transform3D(1, 1.16415e-10, -1.49012e-08, 9.53674e-07, 1, 0, 0, 2.32831e-10, 1, 0, 0, 0)
-mesh = SubResource("TorusMesh_575ha")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ShaderMaterial_x5u7i")
-
-[node name="rings3" type="MeshInstance3D" parent="rings"]
-transform = Transform3D(1, 1.16415e-10, -1.49012e-08, 9.53674e-07, 1, 0, 0, 2.32831e-10, 1, 0, 0, 0)
-mesh = SubResource("TorusMesh_tnmlr")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ShaderMaterial_x5u7i")
-
-[node name="rings4" type="MeshInstance3D" parent="rings"]
-transform = Transform3D(1, 1.16415e-10, -1.49012e-08, 9.53674e-07, 1, 0, 0, 2.32831e-10, 1, 0, 0, 0)
-mesh = SubResource("TorusMesh_spfym")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ShaderMaterial_x5u7i")
 
 [node name="canvas_layer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -138,7 +94,6 @@ text = "F - Switch Camera View
 H - Toggle All Labels
 R - Toggle Ore Deposits
 K - Toggle Network
-L - Toggle Av1 Rings
 
 E - Draw Routes
 V - All Distances from Station
@@ -147,3 +102,47 @@ ESC - Clear All Routes
 WASD & Space & C - Freecam Controls
 Shift [Hold] - Camera \"Sprint\"
 Z [Hold] - Freecam Zoom"
+
+[node name="start_screen" type="Control" parent="canvas_layer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_450h0")
+
+[node name="bg" type="Panel" parent="canvas_layer/start_screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1fhk2")
+
+[node name="open_save" type="Button" parent="canvas_layer/start_screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.5
+offset_top = 86.5
+offset_right = 40.5
+offset_bottom = 117.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Open Save"
+
+[node name="file_dialog" type="FileDialog" parent="canvas_layer/start_screen"]
+title = "Open Save File"
+position = Vector2i(345, 90)
+size = Vector2i(647, 559)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+
+[connection signal="pressed" from="canvas_layer/start_screen/open_save" to="canvas_layer/start_screen" method="_on_open_save_pressed"]
+[connection signal="file_selected" from="canvas_layer/start_screen/file_dialog" to="canvas_layer/start_screen" method="_on_file_dialog_file_selected"]

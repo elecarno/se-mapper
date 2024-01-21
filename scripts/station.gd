@@ -13,8 +13,12 @@ var type: String = "Space Station"
 @onready var freecam = cam_controller.get_node("freecam")
 
 func _ready():
-	name_label.text = "[" + faction + "] " + gridname
-	type_label.text = type
+	if faction != "N/A":
+		name_label.text = "[" + faction + "] " + gridname
+		type_label.text = type
+	else:
+		name_label.text = ""
+		type_label.text = ""
 
 func _process(_delta):
 	if cam_controller.view == 0:

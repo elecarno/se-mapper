@@ -1,5 +1,7 @@
 extends Node3D
 
+var world_loaded: bool = false
+
 @onready var cam_controller:camera_contoller = get_parent()
 @onready var stations = get_parent().get_parent().get_node("stations")
 @onready var console = get_parent().get_parent().get_node("canvas_layer/console")
@@ -29,6 +31,9 @@ func get_station():
 	return closest_station
 
 func _process(_delta):
+	if !world_loaded or stations.get_child_count() == 0:
+		return
+	
 	var nearest = get_station()
 	
 	if selection_1 == null:

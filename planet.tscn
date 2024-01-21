@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="2_c28kp"]
 [ext_resource type="Script" path="res://scripts/planet.gd" id="3_bm2e6"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_7tjyw"]
+[sub_resource type="SphereMesh" id="SphereMesh_k71jk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y3a31"]
 render_priority = 0
@@ -25,7 +25,7 @@ script = ExtResource("3_bm2e6")
 
 [node name="model" type="MeshInstance3D" parent="."]
 transform = Transform3D(120, 0, 0, 0, 120, 0, 0, 0, 120, 0, 0, 0)
-mesh = SubResource("SphereMesh_7tjyw")
+mesh = SubResource("SphereMesh_k71jk")
 surface_material_override/0 = SubResource("ShaderMaterial_aweed")
 
 [node name="labels" type="Node3D" parent="."]

@@ -10,13 +10,14 @@ config_version=5
 
 [application]
 
-config/name="gurp_s4_map"
+config/name="se_map"
 run/main_scene="res://map.tscn"
-config/features=PackedStringArray("4.1", "GL Compatibility")
+config/features=PackedStringArray("4.2", "GL Compatibility")
 
 [autoload]
 
 gpsdata="*res://scripts/gpsdata.gd"
+test_data="*res://scripts/test_data.gd"
 
 [display]
 

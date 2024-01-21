@@ -17,7 +17,7 @@ func _process(_delta):
 		get_node("model").scale = Vector3(5, 5, 5)
 	if cam_controller.view == 1:
 		var dist_to_cam = position.distance_to(freecam.position)
-		var scale_factor = sqrt(dist_to_cam)
+		#var scale_factor = sqrt(dist_to_cam)
 		#var scale_value = 1 * scale_factor
 		get_node("model").scale = Vector3(2, 2, 2)
 		

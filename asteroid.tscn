@@ -1,26 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8dpcsqm3x46"]
+[gd_scene load_steps=4 format=3 uid="uid://c8dpcsqm3x46"]
 
 [ext_resource type="Script" path="res://scripts/asteroid.gd" id="1_7mj0h"]
-[ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="3_p7dah"]
+[ext_resource type="Material" uid="uid://bjlcitaia45i8" path="res://asteroid_shader.tres" id="2_vwxax"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_7tjyw"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oukg5"]
-render_priority = 0
-shader = ExtResource("3_p7dah")
-shader_parameter/color = Color(0.8, 0.690196, 0.0627451, 1)
-shader_parameter/specular = Color(0, 0, 0, 0.501961)
-shader_parameter/fresnel = Color(0, 0, 0, 0.301961)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_offset = Vector2(0, 0)
+[sub_resource type="SphereMesh" id="SphereMesh_v3xix"]
 
 [node name="asteroid" type="Node3D"]
 script = ExtResource("1_7mj0h")
 
 [node name="model" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-mesh = SubResource("SphereMesh_7tjyw")
-surface_material_override/0 = SubResource("ShaderMaterial_oukg5")
+mesh = SubResource("SphereMesh_v3xix")
+surface_material_override/0 = ExtResource("2_vwxax")
 
 [node name="labels" type="Node3D" parent="."]
 transform = Transform3D(9.37667, 0, 0, 0, 9.37667, 0, 0, 0, 9.37667, 0, -2.88774, 0)

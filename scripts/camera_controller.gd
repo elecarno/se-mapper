@@ -1,6 +1,8 @@
 class_name camera_contoller
 extends Node3D
 
+var world_loaded: bool = false
+
 @onready var top_down_cam = get_node("top_down_cam")
 @onready var freecam = get_node("freecam")
 
@@ -15,6 +17,9 @@ func _ready():
 	active_cam = top_down_cam
 
 func _process(_delta):
+	if !world_loaded:
+		return
+	
 	if view == 1 or view == 2:
 		if Input.is_action_pressed("alt_click"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

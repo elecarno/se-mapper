@@ -20,8 +20,8 @@ func _process(delta):
 		translate(velocity * delta)
 		
 	if Input.is_action_pressed("sprint"):
-		speed = 1500.0
-		accel = 7500.0
+		speed = 3000.0
+		accel = 15000.0
 	else:
 		speed = 500.0
 		accel = 2500.0

@@ -2,8 +2,6 @@ extends Node3D
 
 var pos: Vector3 = Vector3(0, 0, 0)
 var planetname: String = "Unnamed"
-var planetnumber: String = "N/A"
-var planetfile: String = "filename"
 var radius: float = 0.0
 var gravity: float = 0.0
 
@@ -16,9 +14,9 @@ var gravity: float = 0.0
 
 func _ready():
 	get_node("model").scale = Vector3(radius*2, radius*2, radius*2)
-	name_label.text = planetnumber + " / " + planetname
+	name_label.text = planetname
 	var grav_str = "%.01f" % [gravity]
-	prop_label.text = "(" + planetfile + "), " + grav_str + "g, ⌀" + str(radius*2) + "km"
+	prop_label.text = grav_str + "g, ⌀" + str(radius*2) + "km"
 	labels.position = Vector3(0, -radius - 20, 0)
 
 func _process(_delta):
