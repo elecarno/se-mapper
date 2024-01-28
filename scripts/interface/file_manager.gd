@@ -35,7 +35,7 @@ func _on_file_dialog_file_selected(path: String):
 			if path.contains(".sbs"): data_manager.load_gamesave(path)
 			else: display_load_error("file is not a .sbs")
 		"mapdata_open":
-			if path.contains(".json"): data_manager.load_gamesave(path) # replace with json loader
+			if path.contains(".json"): data_manager.load_mapdata(path) # replace with json loader
 			else: display_load_error("file is not a .json")
 		"mapdata_save":
 			data_manager.save_mapdata(path)

@@ -11,7 +11,7 @@ extends Node3D
 @onready var stations_holder = get_node("stations")
 @onready var asteroids_holder = get_node("asteroids")
 
-func init_world():
+func spawn_world_objects():
 	get_node("camera_controller").world_loaded = true
 	get_node("camera_controller/lines").world_loaded = true
 	
