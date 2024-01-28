@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://qw3vulp8k02p"]
 
 [ext_resource type="Shader" path="res://src/outline.gdshader" id="1_3vrfx"]
+[ext_resource type="Script" path="res://scripts/map_objects/planet.gd" id="1_hcfc7"]
 [ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="2_c28kp"]
-[ext_resource type="Script" path="res://scripts/planet.gd" id="3_bm2e6"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_k71jk"]
 
@@ -21,7 +21,7 @@ shader_parameter/uv_scale = Vector2(1, 1)
 shader_parameter/uv_offset = Vector2(0, 0)
 
 [node name="planet" type="Node3D"]
-script = ExtResource("3_bm2e6")
+script = ExtResource("1_hcfc7")
 
 [node name="model" type="MeshInstance3D" parent="."]
 transform = Transform3D(120, 0, 0, 0, 120, 0, 0, 0, 120, 0, 0, 0)

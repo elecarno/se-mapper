@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8dpcsqm3x46"]
 
-[ext_resource type="Script" path="res://scripts/asteroid.gd" id="1_7mj0h"]
+[ext_resource type="Script" path="res://scripts/map_objects/asteroid.gd" id="1_ipi31"]
 [ext_resource type="Material" uid="uid://bjlcitaia45i8" path="res://asteroid_shader.tres" id="2_vwxax"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_v3xix"]
 
 [node name="asteroid" type="Node3D"]
-script = ExtResource("1_7mj0h")
+script = ExtResource("1_ipi31")
 
 [node name="model" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)

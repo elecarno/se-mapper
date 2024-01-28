@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dsilf3lddrpd1"]
+[gd_scene load_steps=12 format=3 uid="uid://dsilf3lddrpd1"]
 
 [ext_resource type="Script" path="res://scripts/map.gd" id="1_wcktq"]
-[ext_resource type="Script" path="res://scripts/camera_controller.gd" id="2_ndhmv"]
-[ext_resource type="Script" path="res://scripts/3d_cam.gd" id="2_qgfvi"]
-[ext_resource type="Script" path="res://scripts/top_down_cam.gd" id="3_8ltgi"]
-[ext_resource type="Script" path="res://scripts/line_controller.gd" id="4_oofmq"]
-[ext_resource type="Script" path="res://scripts/start_screen.gd" id="6_450h0"]
+[ext_resource type="Script" path="res://scripts/map_controls/camera_controller.gd" id="2_ndhmv"]
+[ext_resource type="Script" path="res://scripts/map_controls/3d_cam.gd" id="2_qgfvi"]
+[ext_resource type="Script" path="res://scripts/map_controls/top_down_cam.gd" id="3_8ltgi"]
+[ext_resource type="Script" path="res://scripts/map_objects/line_controller.gd" id="4_oofmq"]
+[ext_resource type="Script" path="res://scripts/interface/file_manager.gd" id="6_450h0"]
+[ext_resource type="Script" path="res://scripts/interface/data_manager.gd" id="6_omv4d"]
+[ext_resource type="Script" path="res://scripts/xml_parser.gd" id="7_6r7y6"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ucg4f"]
 
@@ -103,7 +105,36 @@ WASD & Space & C - Freecam Controls
 Shift [Hold] - Camera \"Sprint\"
 Z [Hold] - Freecam Zoom"
 
-[node name="start_screen" type="Control" parent="canvas_layer"]
+[node name="data_manager" type="Control" parent="canvas_layer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_omv4d")
+
+[node name="xml_parser" type="Control" parent="canvas_layer/data_manager"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_6r7y6")
+
+[node name="save_mapdata" type="Button" parent="canvas_layer/data_manager"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 12.0
+offset_right = 96.0
+offset_bottom = 43.0
+text = "Save Map"
+
+[node name="bg" type="Panel" parent="canvas_layer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1fhk2")
+
+[node name="file_manager" type="Control" parent="canvas_layer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,16 +143,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_450h0")
 
-[node name="bg" type="Panel" parent="canvas_layer/start_screen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_1fhk2")
-
-[node name="open_save" type="Button" parent="canvas_layer/start_screen"]
+[node name="open_gamesave" type="Button" parent="canvas_layer/file_manager"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -134,15 +156,51 @@ offset_right = 40.5
 offset_bottom = 117.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Open Save"
+text = "Open Game Save"
 
-[node name="file_dialog" type="FileDialog" parent="canvas_layer/start_screen"]
-title = "Open Save File"
+[node name="open_mapdata" type="Button" parent="canvas_layer/file_manager"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = 50.0
+offset_right = 70.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Open Map"
+
+[node name="error" type="Label" parent="canvas_layer/file_manager"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -102.0
+offset_right = 220.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "error msg"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="file_dialog" type="FileDialog" parent="canvas_layer"]
+title = "Open a File"
 position = Vector2i(345, 90)
 size = Vector2i(647, 559)
 ok_button_text = "Open"
 file_mode = 0
 access = 2
 
-[connection signal="pressed" from="canvas_layer/start_screen/open_save" to="canvas_layer/start_screen" method="_on_open_save_pressed"]
-[connection signal="file_selected" from="canvas_layer/start_screen/file_dialog" to="canvas_layer/start_screen" method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="canvas_layer/data_manager/save_mapdata" to="canvas_layer/file_manager" method="_on_save_mapdata_pressed"]
+[connection signal="pressed" from="canvas_layer/file_manager/open_gamesave" to="canvas_layer/file_manager" method="_on_open_gamesave_pressed"]
+[connection signal="pressed" from="canvas_layer/file_manager/open_mapdata" to="canvas_layer/file_manager" method="_on_open_mapdata_pressed"]
+[connection signal="dir_selected" from="canvas_layer/file_dialog" to="canvas_layer/file_manager" method="_on_file_dialog_dir_selected"]
+[connection signal="file_selected" from="canvas_layer/file_dialog" to="canvas_layer/file_manager" method="_on_file_dialog_file_selected"]

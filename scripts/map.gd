@@ -17,9 +17,7 @@ func init_world():
 	
 	# planets
 	for i in range(0, gpsdata.planets.size()):
-		#var loc = gpsdata.convert_gps_to_vector3(gpsdata.planets[i][0])
 		var loc = gpsdata.get_planet_center(gpsdata.planets[i][1], gpsdata.planets[i][2])
-		
 		var planet: Node3D = planet_scene.instantiate()
 		planet.transform.origin = loc
 		planet.radius = (gpsdata.planets[i][2]/1000)
@@ -37,7 +35,6 @@ func init_world():
 		var station = station_scene.instantiate()
 		station.transform.origin = loc
 		station.pos = loc
-		#var stationdata = gpsdata.get_station_data(test_data.stations[i])
 		station.gridname = str(gpsdata.stations[i][3])
 		station.faction = "Unknown"
 		station.type = "Station"
