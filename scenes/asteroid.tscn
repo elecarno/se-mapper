@@ -1,17 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8dpcsqm3x46"]
 
-[ext_resource type="Script" path="res://scripts/map_objects/asteroid.gd" id="1_ipi31"]
-[ext_resource type="Material" uid="uid://bjlcitaia45i8" path="res://asteroid_shader.tres" id="2_vwxax"]
+[ext_resource type="Script" path="res://scripts/map_objects/asteroid.gd" id="1_vagh8"]
+[ext_resource type="Material" uid="uid://bjlcitaia45i8" path="res://shaders/asteroid_shader.tres" id="2_eyfho"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_v3xix"]
 
-[node name="asteroid" type="Node3D"]
-script = ExtResource("1_ipi31")
+[node name="asteroid" type="Node3D" node_paths=PackedStringArray("name_label")]
+script = ExtResource("1_vagh8")
+scale_labels = true
+scale_size = true
+topdown_scale = Vector3(5, 5, 5)
+freecam_scale = Vector3(2, 2, 2)
+name_label = NodePath("labels/name")
 
 [node name="model" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 mesh = SubResource("SphereMesh_v3xix")
-surface_material_override/0 = ExtResource("2_vwxax")
+surface_material_override/0 = ExtResource("2_eyfho")
 
 [node name="labels" type="Node3D" parent="."]
 transform = Transform3D(9.37667, 0, 0, 0, 9.37667, 0, 0, 0, 9.37667, 0, -2.88774, 0)

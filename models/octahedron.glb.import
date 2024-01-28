@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dmv34wc56jgg2"
-path="res://.godot/imported/octahedron.glb-6b19adfe158a76b1414770f1f90c9548.scn"
+path="res://.godot/imported/octahedron.glb-03bfa98c5db92079b174b7f46b68e5a0.scn"
 
 [deps]
 
-source_file="res://octahedron.glb"
-dest_files=["res://.godot/imported/octahedron.glb-6b19adfe158a76b1414770f1f90c9548.scn"]
+source_file="res://models/octahedron.glb"
+dest_files=["res://.godot/imported/octahedron.glb-03bfa98c5db92079b174b7f46b68e5a0.scn"]
 
 [params]
 

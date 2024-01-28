@@ -9,7 +9,7 @@ An interactive 3D mapping application for the game Space Engineers. Providing a 
 - [x] Freecam viewmode.
 - [x] Load save files and generate map of planets, stations, and asteroids.
 - [x] Draw custom routes between stations / show distances.
-- [ ] Save and load se-mapper files (JSON).
+- [x] Save and load se-mapper files (JSON).
 - [ ] Overhead panning camera viewmode.
 - [ ] Co-ordinate grid plane.
 - [ ] Input of custom GPSs.

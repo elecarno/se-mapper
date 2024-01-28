@@ -1,27 +1,31 @@
 [gd_scene load_steps=7 format=3 uid="uid://qw3vulp8k02p"]
 
-[ext_resource type="Shader" path="res://src/outline.gdshader" id="1_3vrfx"]
-[ext_resource type="Script" path="res://scripts/map_objects/planet.gd" id="1_hcfc7"]
-[ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="2_c28kp"]
+[ext_resource type="Script" path="res://scripts/map_objects/planet.gd" id="1_sfxnr"]
+[ext_resource type="Shader" path="res://src/outline.gdshader" id="2_wwy13"]
+[ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="3_lsu05"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_k71jk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y3a31"]
 render_priority = 0
-shader = ExtResource("1_3vrfx")
+shader = ExtResource("2_wwy13")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aweed"]
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_y3a31")
-shader = ExtResource("2_c28kp")
+shader = ExtResource("3_lsu05")
 shader_parameter/color = Color(0.54902, 0.427451, 0.427451, 1)
 shader_parameter/specular = Color(0, 0, 0, 0.501961)
 shader_parameter/fresnel = Color(0, 0, 0, 0.301961)
 shader_parameter/uv_scale = Vector2(1, 1)
 shader_parameter/uv_offset = Vector2(0, 0)
 
-[node name="planet" type="Node3D"]
-script = ExtResource("1_hcfc7")
+[node name="planet" type="Node3D" node_paths=PackedStringArray("name_label", "prop_label")]
+script = ExtResource("1_sfxnr")
+topdown_scale = Vector3(1, 1, 1)
+freecam_scale = Vector3(1, 1, 1)
+name_label = NodePath("labels/name")
+prop_label = NodePath("labels/properties")
 
 [node name="model" type="MeshInstance3D" parent="."]
 transform = Transform3D(120, 0, 0, 0, 120, 0, 0, 0, 120, 0, 0, 0)

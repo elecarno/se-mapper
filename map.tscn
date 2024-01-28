@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/map_controls/camera_controller.gd" id="2_ndhmv"]
 [ext_resource type="Script" path="res://scripts/map_controls/3d_cam.gd" id="2_qgfvi"]
 [ext_resource type="Script" path="res://scripts/map_controls/top_down_cam.gd" id="3_8ltgi"]
-[ext_resource type="Script" path="res://scripts/map_objects/line_controller.gd" id="4_oofmq"]
+[ext_resource type="Script" path="res://scripts/map_features/line_controller.gd" id="4_oofmq"]
 [ext_resource type="Script" path="res://scripts/interface/file_manager.gd" id="6_450h0"]
 [ext_resource type="Script" path="res://scripts/interface/data_manager.gd" id="6_omv4d"]
 [ext_resource type="Script" path="res://scripts/xml_parser.gd" id="7_6r7y6"]
@@ -45,11 +45,11 @@ script = ExtResource("4_oofmq")
 
 [node name="trade" type="Node3D" parent="camera_controller/lines"]
 
-[node name="planets" type="Node3D" parent="."]
+[node name="h_planets" type="Node3D" parent="."]
 
-[node name="stations" type="Node3D" parent="."]
+[node name="h_stations" type="Node3D" parent="."]
 
-[node name="asteroids" type="Node3D" parent="."]
+[node name="h_asteroids" type="Node3D" parent="."]
 visible = false
 
 [node name="bg" type="MeshInstance3D" parent="."]
@@ -77,12 +77,12 @@ text = "from:"
 vertical_alignment = 2
 
 [node name="msg" type="Label" parent="canvas_layer"]
-offset_left = 1086.0
+offset_left = 979.0
 offset_top = 700.0
-offset_right = 1459.0
+offset_right = 1562.0
 offset_bottom = 726.0
 scale = Vector2(0.5, 0.5)
-text = "KCO Avalon Map v1.0.1, Press TAB for keybinds"
+text = "Elecarno's SE Mapper v1.0, Press TAB for keybinds"
 horizontal_alignment = 2
 vertical_alignment = 2
 

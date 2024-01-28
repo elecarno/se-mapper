@@ -1,4 +1,4 @@
-class_name xml_parser
+class_name c_xml_parser
 extends Control
 
 func xml_get_planets(file: String) -> Array:

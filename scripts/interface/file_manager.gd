@@ -2,7 +2,7 @@ extends Control
 
 @onready var file_dialog: FileDialog = get_parent().get_node("file_dialog")
 @onready var error_label: Label = get_node("error")
-@onready var data_manager: data_manager = get_parent().get_node("data_manager")
+@onready var data_manager: c_data_manager = get_parent().get_node("data_manager")
 var type: String = ""
 
 func _on_open_gamesave_pressed():

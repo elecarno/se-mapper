@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ctadic588ifte"]
 
-[ext_resource type="Script" path="res://scripts/map_objects/station.gd" id="1_ldohb"]
-[ext_resource type="Material" uid="uid://dfmtek51osnly" path="res://station_shader.tres" id="2_dcxam"]
+[ext_resource type="Script" path="res://scripts/map_objects/station.gd" id="1_u5crv"]
+[ext_resource type="Material" uid="uid://dfmtek51osnly" path="res://shaders/station_shader.tres" id="2_vv5f8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8xd7x"]
 
@@ -35,14 +35,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_5ovpg")
 
-[node name="station" type="Node3D"]
+[node name="station" type="Node3D" node_paths=PackedStringArray("name_label", "type_label")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
-script = ExtResource("1_ldohb")
+script = ExtResource("1_u5crv")
+scale_labels = true
+scale_size = true
+topdown_scale = Vector3(15, 15, 15)
+freecam_scale = Vector3(5, 5, 5)
+name_label = NodePath("labels/name")
+type_label = NodePath("labels/type")
 
 [node name="model" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_li17q")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_dcxam")
+surface_material_override/0 = ExtResource("2_vv5f8")
 
 [node name="labels" type="Node3D" parent="."]
 

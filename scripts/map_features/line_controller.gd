@@ -3,10 +3,10 @@ extends Node3D
 var world_loaded: bool = false
 
 @onready var cam_controller:camera_contoller = get_parent()
-@onready var stations = get_parent().get_parent().get_node("stations")
+@onready var stations = get_parent().get_parent().get_node("h_stations")
 @onready var console = get_parent().get_parent().get_node("canvas_layer/console")
 
-@onready var mapline = preload("res://mapline.tscn")
+@onready var mapline = preload("res://scenes/mapline.tscn")
 
 var selection_1: Node3D = null
 
@@ -39,17 +39,17 @@ func _process(_delta):
 	if selection_1 == null:
 		if Input.is_action_just_pressed("select_nearest"):
 			selection_1 = nearest
-			print("selection_1: " + str(nearest.position) + " | " + str(nearest.gridname))
-		console.text = "nearest: " + str(nearest.gridname)
+			print("selection_1: " + str(nearest.position) + " | " + str(nearest.object_name))
+		console.text = "nearest: " + str(nearest.object_name)
 	else:
 		var pos1 = selection_1.position
 		var pos2 = nearest.position
 		var dist = sqrt(pow((pos2.x - pos1.x), 2) + pow((pos2.y - pos1.y), 2) + pow((pos2.z - pos1.z), 2))
 		var dist_str = " (%.01fkm)" % [dist]
-		console.text = "(draw route) from: " + str(selection_1.gridname) + ", to: " + str(nearest.gridname) + dist_str
+		console.text = "(draw route) from: " + str(selection_1.object_name) + ", to: " + str(nearest.object_name) + dist_str
 		if Input.is_action_just_pressed("select_nearest"):
 			spawn_line(selection_1.position, nearest.position)
-			print("drawn line to: " + str(nearest.position) + " | " + str(nearest.gridname))
+			print("drawn line to: " + str(nearest.position) + " | " + str(nearest.object_name))
 			selection_1 = null
 			
 	if Input.is_action_just_pressed("show_all"):
@@ -59,7 +59,7 @@ func _process(_delta):
 				
 	if Input.is_action_just_pressed("cancel"):
 		selection_1 = null
-		console.text = "from: " + str(nearest.gridname)
+		console.text = "from: " + str(nearest.object_name)
 		for i in range(0, get_child_count()):
 			get_child(i).queue_free()
 			
