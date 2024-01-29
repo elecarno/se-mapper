@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dsilf3lddrpd1"]
+[gd_scene load_steps=16 format=3 uid="uid://dsilf3lddrpd1"]
 
 [ext_resource type="Script" path="res://scripts/map.gd" id="1_wcktq"]
 [ext_resource type="Script" path="res://scripts/map_controls/camera_controller.gd" id="2_ndhmv"]
@@ -6,10 +6,22 @@
 [ext_resource type="Script" path="res://scripts/map_controls/top_down_cam.gd" id="3_8ltgi"]
 [ext_resource type="Script" path="res://scripts/map_features/line_controller.gd" id="4_oofmq"]
 [ext_resource type="Script" path="res://scripts/interface/file_manager.gd" id="6_450h0"]
+[ext_resource type="Texture2D" uid="uid://cad3xqgk30mtj" path="res://models/grid.png" id="6_aitju"]
 [ext_resource type="Script" path="res://scripts/interface/data_manager.gd" id="6_omv4d"]
 [ext_resource type="Script" path="res://scripts/xml_parser.gd" id="7_6r7y6"]
+[ext_resource type="Script" path="res://scripts/interface/object_editor.gd" id="7_v0kxw"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ucg4f"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qiol2"]
+size = Vector2(24000, 24000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xajqq"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.27451, 0.27451, 0.27451, 1)
+albedo_texture = ExtResource("6_aitju")
+texture_filter = 0
 
 [sub_resource type="Environment" id="Environment_w5re7"]
 background_mode = 1
@@ -28,11 +40,11 @@ script = ExtResource("1_wcktq")
 script = ExtResource("2_ndhmv")
 
 [node name="top_down_cam" type="Camera3D" parent="camera_controller"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2413.49, 4529.81, 443.409)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4529.81, 0)
 projection = 1
 current = true
 size = 7500.0
-far = 7500.0
+far = 100000.0
 script = ExtResource("3_8ltgi")
 
 [node name="freecam" type="Camera3D" parent="camera_controller"]
@@ -56,6 +68,12 @@ visible = false
 transform = Transform3D(1750, 0, 0, 0, 1750, 0, 0, 0, 1750, 0, -65.5159, 0)
 visible = false
 mesh = SubResource("PlaneMesh_ucg4f")
+
+[node name="grid" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-08, 0, 1, 3.8147e-06, -7.62939e-06, 0)
+visible = false
+mesh = SubResource("PlaneMesh_qiol2")
+surface_material_override/0 = SubResource("StandardMaterial3D_xajqq")
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.683298, 0.0786125, 0.725895, -0.724742, 0.193685, 0.661237, -0.0886138, -0.977909, 0.189319, 0, 106.412, 0)
@@ -105,6 +123,125 @@ WASD & Space & C - Freecam Controls
 Shift [Hold] - Camera \"Sprint\"
 Z [Hold] - Freecam Zoom"
 
+[node name="map_menus" type="Control" parent="canvas_layer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="objects_menu" type="Control" parent="canvas_layer/map_menus"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -244.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 494.0
+grow_horizontal = 0
+
+[node name="panel" type="PanelContainer" parent="canvas_layer/map_menus/objects_menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="scroll" type="ScrollContainer" parent="canvas_layer/map_menus/objects_menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 13.0
+offset_right = -12.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="vbox" type="VBoxContainer" parent="canvas_layer/map_menus/objects_menu/scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="object_editor" type="Control" parent="canvas_layer/map_menus"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -641.0
+offset_top = 21.0
+offset_right = -255.0
+offset_bottom = 231.0
+grow_horizontal = 0
+script = ExtResource("7_v0kxw")
+
+[node name="panel" type="PanelContainer" parent="canvas_layer/map_menus/object_editor"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="name_edit" type="LineEdit" parent="canvas_layer/map_menus/object_editor"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -375.0
+offset_top = 11.0
+offset_right = -10.0
+offset_bottom = 48.0
+grow_horizontal = 0
+placeholder_text = "Display Name"
+
+[node name="colour_picker_button" type="ColorPickerButton" parent="canvas_layer/map_menus/object_editor"]
+layout_mode = 0
+offset_left = 262.0
+offset_top = 54.0
+offset_right = 374.0
+offset_bottom = 86.0
+
+[node name="colour_labels" type="Label" parent="canvas_layer/map_menus/object_editor"]
+modulate = Color(0.694118, 0.694118, 0.694118, 1)
+layout_mode = 0
+offset_left = 13.0
+offset_top = 59.0
+offset_right = 209.0
+offset_bottom = 84.0
+text = "Display Colour
+"
+
+[node name="prop_names" type="Label" parent="canvas_layer/map_menus/object_editor"]
+modulate = Color(0.694118, 0.694118, 0.694118, 1)
+layout_mode = 0
+offset_left = 13.0
+offset_top = 95.0
+offset_right = 209.0
+offset_bottom = 203.0
+text = "Position
+Radius
+Atm. Radius
+Gravity
+"
+
+[node name="prop_label" type="Label" parent="canvas_layer/map_menus/object_editor"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 95.0
+offset_right = 375.0
+offset_bottom = 203.0
+text = "12345678, 12345678, 12345678
+70km
+90km
+1.0g"
+horizontal_alignment = 2
+
 [node name="data_manager" type="Control" parent="canvas_layer"]
 layout_mode = 3
 anchors_preset = 0
@@ -127,6 +264,7 @@ offset_bottom = 43.0
 text = "Save Map"
 
 [node name="bg" type="Panel" parent="canvas_layer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -135,6 +273,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1fhk2")
 
 [node name="file_manager" type="Control" parent="canvas_layer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -198,7 +337,10 @@ size = Vector2i(647, 559)
 ok_button_text = "Open"
 file_mode = 0
 access = 2
+show_hidden_files = true
 
+[connection signal="text_submitted" from="canvas_layer/map_menus/object_editor/name_edit" to="canvas_layer/map_menus/object_editor" method="_on_name_edit_text_submitted"]
+[connection signal="color_changed" from="canvas_layer/map_menus/object_editor/colour_picker_button" to="canvas_layer/map_menus/object_editor" method="_on_colour_picker_button_color_changed"]
 [connection signal="pressed" from="canvas_layer/data_manager/save_mapdata" to="canvas_layer/file_manager" method="_on_save_mapdata_pressed"]
 [connection signal="pressed" from="canvas_layer/file_manager/open_gamesave" to="canvas_layer/file_manager" method="_on_open_gamesave_pressed"]
 [connection signal="pressed" from="canvas_layer/file_manager/open_mapdata" to="canvas_layer/file_manager" method="_on_open_mapdata_pressed"]

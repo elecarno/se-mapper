@@ -4,6 +4,8 @@ extends Node3D
 const show_colour: Color = Color(1, 1, 1, 1)
 const hide_colour: Color = Color(1, 1, 1, 0)
 
+var data_idx: int = 0
+
 var label_hide_distance: int = 500
 @export var scale_labels: bool = false
 @export var scale_size: bool = false
@@ -17,8 +19,12 @@ var object_name: String = "Unknown"
 @export var type_label: Label3D
 @export var prop_label: Label3D
 
-@onready var cam_controller = get_parent().get_parent().get_node("camera_controller")
-@onready var freecam = cam_controller.get_node("freecam")
+@onready var cam_controller: Node3D = get_parent().get_parent().get_node("camera_controller")
+@onready var freecam: Camera3D = cam_controller.get_node("freecam")
+@onready var object_editor: Control = get_parent().get_parent().get_node("canvas_layer/map_menus/object_editor")
+
+@onready var cel_shader: Resource = preload("res://shaders/cel_shader.tres")
+@onready var station_shader: Resource = preload("res://shaders/station_shader.tres")
 
 func _process(_delta):
 	if cam_controller.view == 0:

@@ -10,10 +10,11 @@ An interactive 3D mapping application for the game Space Engineers. Providing a 
 - [x] Load save files and generate map of planets, stations, and asteroids.
 - [x] Draw custom routes between stations / show distances.
 - [x] Save and load se-mapper files (JSON).
-- [ ] Overhead panning camera viewmode.
+- [ ] Overhead pan & zoom camera viewmode.
 - [ ] Co-ordinate grid plane.
-- [ ] Input of custom GPSs.
-- [ ] Allow customisation of planet, station, and asteroids (colour, name, faction, type).
+- [ ] Input of custom GPSs to create planets, stations, or asteroids.
+- [x] Allow customisation of planet, station, and asteroids (colour & name).
+- [ ] Further customisation options for stations (faction & type)
 - [ ] Render map to image file (if possbile).
 - [ ] Calculate number of jumps between stations (input ship jump distance).
 - [ ] Route planner (calculated path between two stations with stop-offs at in-between stations).

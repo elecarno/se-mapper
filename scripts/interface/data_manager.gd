@@ -17,6 +17,7 @@ func load_mapdata(path: String):
 	for i in data:
 		for j in range(0, data[i].size()):
 			data[i][j][1] = string_to_vector3(data[i][j][1])
+			data[i][j][-1] = string_to_vector3(data[i][j][-1])
 	print(data)
 	gpsdata.planets = data["planets"]
 	gpsdata.stations = data["stations"]
@@ -26,10 +27,10 @@ func load_mapdata(path: String):
 func load_gamesave(path: String):
 	gpsdata.planets = xml_parser.xml_get_planets(path)
 	gpsdata.stations = xml_parser.xml_get_stations(path)
-	gpsdata.asteroids = xml_parser.xml_get_asteroids(path)
+	#gpsdata.asteroids = xml_parser.xml_get_asteroids(path)
 	print(gpsdata.planets)
 	print(gpsdata.stations)
-	print(gpsdata.asteroids)
+	#print(gpsdata.asteroids)
 	init_world()
 
 func init_world():
@@ -44,6 +45,6 @@ func string_to_vector3(string: String) -> Vector3:
 		new_string = new_string.erase(new_string.length() - 1, 1)
 		var array: Array = new_string.split(", ")
 
-		return Vector3(int(array[0]), int(array[1]), int(array[2]))
+		return Vector3(float(array[0]), float(array[1]), float(array[2]))
 
 	return Vector3.ZERO

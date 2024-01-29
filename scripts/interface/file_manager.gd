@@ -5,6 +5,10 @@ extends Control
 @onready var data_manager: c_data_manager = get_parent().get_node("data_manager")
 var type: String = ""
 
+func _ready():
+	visible = true
+	get_parent().get_node("bg").visible = true
+
 func _on_open_gamesave_pressed():
 	configure_file_dialog("Open Game Save (.sbs)")
 	file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE

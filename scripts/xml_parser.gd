@@ -41,6 +41,7 @@ func xml_get_planets(file: String) -> Array:
 						current_planet.append(data)
 			XMLParser.NODE_ELEMENT_END:
 				if parser.get_node_name() == "MyObjectBuilder_EntityBase" and is_reading_planet:
+					current_planet.append(Vector3(0.21, 0.48, 0.65))
 					planets_found.append(clean_array(current_planet))
 					current_planet = []
 					is_reading_planet = false
@@ -82,6 +83,7 @@ func xml_get_stations(file: String) -> Array:
 						current_station.append(data)
 			XMLParser.NODE_ELEMENT_END:
 				if parser.get_node_name() == "MyObjectBuilder_EntityBase" and is_reading_station:
+					current_station.append(Vector3(1.0, 1.0, 1.0))
 					var cleaned_station_array = clean_array(current_station)
 					if cleaned_station_array[2] is bool and cleaned_station_array[2] == true:
 						stations_found.append(cleaned_station_array)
@@ -122,6 +124,7 @@ func xml_get_asteroids(file: String) -> Array:
 						current_asteroid.append(data)
 			XMLParser.NODE_ELEMENT_END:
 				if parser.get_node_name() == "MyObjectBuilder_EntityBase" and is_reading_asteroid:
+					current_asteroid.append(Vector3(0.92, 0.65, 0.20))
 					asteroids_found.append(clean_array(current_asteroid))
 					current_asteroid = []
 					is_reading_asteroid = false
