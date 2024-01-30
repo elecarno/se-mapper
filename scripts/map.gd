@@ -38,6 +38,7 @@ func spawn_world_objects():
 	# stations
 	for i in range(0, gpsdata.stations.size()):
 		var station: map_object = station_scene.instantiate()
+		station.data_idx = i
 		
 		var loc = gpsdata.stations[i][1]/1000
 		var material: ShaderMaterial = station_shader.duplicate()
@@ -47,14 +48,15 @@ func spawn_world_objects():
 		station.get_node("model").set_surface_override_material(0, material)
 		station.transform.origin = loc
 		station.object_name = str(gpsdata.stations[i][3])
-		station.faction = "Unknown"
-		station.type = "Station"
+		station.faction = gpsdata.stations[i][4]
+		station.type = gpsdata.stations[i][5]
 		
 		stations_holder.add_child(station)
 	
 	# Asteroids
 	#for i in range(0, gpsdata.asteroids.size()):
 		#var asteroid: map_object = asteroid_scene.instantiate()
+		#asteroid.data_idx = i
 		#
 		#var loc = gpsdata.asteroids[i][1]/1000
 		#

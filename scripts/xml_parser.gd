@@ -83,6 +83,8 @@ func xml_get_stations(file: String) -> Array:
 						current_station.append(data)
 			XMLParser.NODE_ELEMENT_END:
 				if parser.get_node_name() == "MyObjectBuilder_EntityBase" and is_reading_station:
+					current_station.append("Unknown")
+					current_station.append("Station")
 					current_station.append(Vector3(1.0, 1.0, 1.0))
 					var cleaned_station_array = clean_array(current_station)
 					if cleaned_station_array[2] is bool and cleaned_station_array[2] == true:

@@ -3,8 +3,6 @@ extends map_object
 var faction: String = "Unknown"
 var type: String = "Space Station"
 
-
-
 func _ready():
 	update_display()
 	object_editor.connect("update_display", update_display)
@@ -18,10 +16,8 @@ func update_display():
 	get_node("model").set_surface_override_material(0, material)
 	
 	object_name = objectdata[3]
-	
-	if faction != "N/A":
-		name_label.text = "[" + faction + "] " + object_name
-		type_label.text = type
-	else:
-		name_label.text = ""
-		type_label.text = ""
+	faction = objectdata[4]
+	type = objectdata[5]
+
+	name_label.text = "[" + faction + "] " + object_name
+	type_label.text = type
