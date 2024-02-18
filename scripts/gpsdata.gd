@@ -27,7 +27,7 @@ func get_gps_name(gps: String):
 
 func check_is_gps(gps: String):
 	var gps_split: Array = gps.split(":")
-	if gps_split.size() != 7:
+	if gps_split.size() < 4:
 		return false
 	else:
 		return true
