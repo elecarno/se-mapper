@@ -13,7 +13,8 @@ An interactive 3D mapping application for the game Space Engineers. Providing a 
 - [x] Save and load se-mapper files (JSON).
 - [ ] Overhead pan & zoom camera viewmode.
 - [ ] Co-ordinate grid plane.
-- [ ] Input of custom GPSs to create planets, stations.
+- [x] Input of custom GPSs to create planets & stations.
+- [x] Delete map objects.
 - [x] Allow customisation of planet, station, and asteroids (colour & name).
 - [x] Further customisation options for stations (faction & type)
 

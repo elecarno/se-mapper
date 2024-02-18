@@ -4,9 +4,23 @@
 [ext_resource type="Script" path="res://scripts/interface/map_obj_button.gd" id="2_hxpuy"]
 
 [node name="map_obj_button" type="Button"]
-text = "Luma"
+offset_right = 144.0
+offset_bottom = 32.0
+text = "Luma     "
 icon = ExtResource("1_jxbk3")
 alignment = 2
 script = ExtResource("2_hxpuy")
 
+[node name="delete_button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -17.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "x"
+
 [connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="pressed" from="delete_button" to="." method="_on_delete_button_pressed"]

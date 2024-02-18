@@ -5,6 +5,7 @@ extends Control
 @onready var object_editor = get_node("object_editor")
 @onready var add_gps_menu_open = get_node("add_gps_menu_open")
 @onready var add_gps_menu = get_node("add_gps_menu")
+@onready var map: map_controller = get_parent().get_parent()
 
 func _on_close_button_pressed():
 	objects_menu.visible = false

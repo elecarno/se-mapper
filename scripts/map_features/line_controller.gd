@@ -52,10 +52,10 @@ func _process(_delta):
 			print("drawn line to: " + str(nearest.position) + " | " + str(nearest.object_name))
 			selection_1 = null
 			
-	if Input.is_action_just_pressed("show_all"):
-		for i in range(0, stations.get_child_count()):
-			if nearest.position != stations.get_child(i).position:
-				spawn_line(nearest.position, stations.get_child(i).position)
+	#if Input.is_action_just_pressed("show_all"):
+		#for i in range(0, stations.get_child_count()):
+			#if nearest.position != stations.get_child(i).position:
+				#spawn_line(nearest.position, stations.get_child(i).position)
 				
 	if Input.is_action_just_pressed("cancel"):
 		selection_1 = null

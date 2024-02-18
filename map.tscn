@@ -318,9 +318,10 @@ layout_mode = 1
 offset_left = -32.0
 offset_right = -2.0
 offset_bottom = 31.0
-text = "x"
+text = ">"
 
 [node name="add_gps_menu" type="Control" parent="canvas_layer/map_menus"]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -352,6 +353,30 @@ offset_bottom = 48.0
 grow_horizontal = 0
 placeholder_text = "Insert GPS"
 
+[node name="para_1" type="LineEdit" parent="canvas_layer/map_menus/add_gps_menu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -194.0
+offset_top = 90.0
+offset_right = -9.0
+offset_bottom = 123.0
+grow_horizontal = 0
+placeholder_text = "Insert Faction"
+
+[node name="para_2" type="LineEdit" parent="canvas_layer/map_menus/add_gps_menu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -194.0
+offset_top = 123.0
+offset_right = -9.0
+offset_bottom = 156.0
+grow_horizontal = 0
+placeholder_text = "Insert Type"
+
 [node name="type_label" type="Label" parent="canvas_layer/map_menus/add_gps_menu"]
 modulate = Color(0.694118, 0.694118, 0.694118, 1)
 layout_mode = 0
@@ -361,12 +386,32 @@ offset_right = 209.0
 offset_bottom = 84.0
 text = "Select Type"
 
+[node name="para_label" type="Label" parent="canvas_layer/map_menus/add_gps_menu"]
+modulate = Color(0.694118, 0.694118, 0.694118, 1)
+layout_mode = 0
+offset_left = 13.0
+offset_top = 95.0
+offset_right = 376.0
+offset_bottom = 181.0
+text = "Faction
+Type"
+
+[node name="confirm_label" type="Label" parent="canvas_layer/map_menus/add_gps_menu"]
+visible = false
+modulate = Color(0.694118, 0.694118, 0.694118, 1)
+layout_mode = 0
+offset_left = 13.0
+offset_top = 221.0
+offset_right = 383.0
+offset_bottom = 323.0
+text = "Added: "
+
 [node name="close_button" type="Button" parent="canvas_layer/map_menus/add_gps_menu"]
 layout_mode = 1
 offset_left = -32.0
 offset_right = -2.0
 offset_bottom = 31.0
-text = "x"
+text = ">"
 
 [node name="submit_button" type="Button" parent="canvas_layer/map_menus/add_gps_menu"]
 layout_mode = 1
@@ -513,6 +558,7 @@ show_hidden_files = true
 [connection signal="pressed" from="canvas_layer/map_menus/object_editor/close_button" to="canvas_layer/map_menus/object_editor" method="_on_close_button_pressed"]
 [connection signal="pressed" from="canvas_layer/map_menus/add_gps_menu/close_button" to="canvas_layer/map_menus" method="_on_close_button_pressed"]
 [connection signal="pressed" from="canvas_layer/map_menus/add_gps_menu/submit_button" to="canvas_layer/map_menus/add_gps_menu" method="_on_submit_button_pressed"]
+[connection signal="item_selected" from="canvas_layer/map_menus/add_gps_menu/type_select" to="canvas_layer/map_menus/add_gps_menu" method="_on_type_select_item_selected"]
 [connection signal="pressed" from="canvas_layer/data_manager/save_mapdata" to="canvas_layer/file_manager" method="_on_save_mapdata_pressed"]
 [connection signal="pressed" from="canvas_layer/file_manager/open_gamesave" to="canvas_layer/file_manager" method="_on_open_gamesave_pressed"]
 [connection signal="pressed" from="canvas_layer/file_manager/open_mapdata" to="canvas_layer/file_manager" method="_on_open_mapdata_pressed"]
