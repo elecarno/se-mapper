@@ -2,7 +2,7 @@ extends Node
 
 var planets: Array = [] # [name, position, radius, has_atmos, atmos_radius, gravity]
 var asteroids: Array = [] # [name, position]
-var stations: Array = [] # [id, position, is_static, display_name]
+var stations: Array = [] # [id, position, is_static, display_name, faction, type, colour]
 
 func get_planet_center(corner_pos: Vector3, dimension: float) -> Vector3:
 	var x = dimension + corner_pos.x

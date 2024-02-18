@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dsilf3lddrpd1"]
+[gd_scene load_steps=21 format=3 uid="uid://dsilf3lddrpd1"]
 
 [ext_resource type="Script" path="res://scripts/map.gd" id="1_wcktq"]
 [ext_resource type="Script" path="res://scripts/map_controls/camera_controller.gd" id="2_ndhmv"]
@@ -11,6 +11,10 @@
 [ext_resource type="Script" path="res://scripts/xml_parser.gd" id="7_6r7y6"]
 [ext_resource type="Script" path="res://scripts/interface/map_menus.gd" id="7_hwjwt"]
 [ext_resource type="Script" path="res://scripts/interface/object_editor.gd" id="7_v0kxw"]
+[ext_resource type="Script" path="res://scripts/interface/add_gps_menu.gd" id="9_0avfx"]
+[ext_resource type="Texture2D" uid="uid://xu76gafqrbn5" path="res://icons/sphere.svg" id="10_bxjq5"]
+[ext_resource type="Texture2D" uid="uid://d2jmcyb3k4tm0" path="res://icons/cube.svg" id="11_hqek8"]
+[ext_resource type="Texture2D" uid="uid://b3xjlq0hhbsen" path="res://icons/hexagon.svg" id="12_b3pek"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ucg4f"]
 
@@ -101,7 +105,7 @@ offset_top = 700.0
 offset_right = 1562.0
 offset_bottom = 726.0
 scale = Vector2(0.5, 0.5)
-text = "Elecarno's SE Mapper v1.0, Press TAB for keybinds"
+text = "Elecarno's SE Mapper v1.0, Press L for keybinds"
 horizontal_alignment = 2
 vertical_alignment = 2
 
@@ -145,7 +149,20 @@ offset_bottom = 43.0
 grow_horizontal = 0
 text = "Edit Objects"
 
+[node name="add_gps_menu_open" type="Button" parent="canvas_layer/map_menus"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -294.0
+offset_top = 10.0
+offset_right = -121.0
+offset_bottom = 43.0
+grow_horizontal = 0
+text = "Add Object From GPS"
+
 [node name="objects_menu" type="Control" parent="canvas_layer/map_menus"]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -303,6 +320,92 @@ offset_right = -2.0
 offset_bottom = 31.0
 text = "x"
 
+[node name="add_gps_menu" type="Control" parent="canvas_layer/map_menus"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -397.0
+offset_top = 10.0
+offset_right = -11.0
+offset_bottom = 220.0
+grow_horizontal = 0
+script = ExtResource("9_0avfx")
+
+[node name="panel" type="PanelContainer" parent="canvas_layer/map_menus/add_gps_menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="gps_insert" type="LineEdit" parent="canvas_layer/map_menus/add_gps_menu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -375.0
+offset_top = 11.0
+offset_right = -10.0
+offset_bottom = 48.0
+grow_horizontal = 0
+placeholder_text = "Insert GPS"
+
+[node name="type_label" type="Label" parent="canvas_layer/map_menus/add_gps_menu"]
+modulate = Color(0.694118, 0.694118, 0.694118, 1)
+layout_mode = 0
+offset_left = 13.0
+offset_top = 59.0
+offset_right = 209.0
+offset_bottom = 84.0
+text = "Select Type"
+
+[node name="close_button" type="Button" parent="canvas_layer/map_menus/add_gps_menu"]
+layout_mode = 1
+offset_left = -32.0
+offset_right = -2.0
+offset_bottom = 31.0
+text = "x"
+
+[node name="submit_button" type="Button" parent="canvas_layer/map_menus/add_gps_menu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -37.0
+offset_right = 15.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+disabled = true
+text = "Select type to add GPS"
+
+[node name="type_select" type="OptionButton" parent="canvas_layer/map_menus/add_gps_menu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -194.0
+offset_top = 55.0
+offset_right = -11.0
+offset_bottom = 87.0
+grow_horizontal = 0
+item_count = 3
+popup/item_0/text = "Planet"
+popup/item_0/icon = ExtResource("10_bxjq5")
+popup/item_0/id = 0
+popup/item_1/text = "Grid"
+popup/item_1/icon = ExtResource("11_hqek8")
+popup/item_1/id = 1
+popup/item_2/text = "Asteroid (WIP)"
+popup/item_2/icon = ExtResource("12_b3pek")
+popup/item_2/id = 2
+popup/item_2/disabled = true
+
 [node name="data_manager" type="Control" parent="canvas_layer"]
 layout_mode = 3
 anchors_preset = 0
@@ -401,12 +504,15 @@ access = 2
 show_hidden_files = true
 
 [connection signal="pressed" from="canvas_layer/map_menus/objects_menu_open" to="canvas_layer/map_menus" method="_on_objects_menu_open_pressed"]
+[connection signal="pressed" from="canvas_layer/map_menus/add_gps_menu_open" to="canvas_layer/map_menus" method="_on_add_gps_menu_open_pressed"]
 [connection signal="pressed" from="canvas_layer/map_menus/objects_menu/close_button" to="canvas_layer/map_menus" method="_on_close_button_pressed"]
 [connection signal="text_submitted" from="canvas_layer/map_menus/object_editor/name_edit" to="canvas_layer/map_menus/object_editor" method="_on_name_edit_text_submitted"]
 [connection signal="text_submitted" from="canvas_layer/map_menus/object_editor/type_edit" to="canvas_layer/map_menus/object_editor" method="_on_type_edit_text_submitted"]
 [connection signal="text_submitted" from="canvas_layer/map_menus/object_editor/faction_edit" to="canvas_layer/map_menus/object_editor" method="_on_faction_edit_text_submitted"]
 [connection signal="color_changed" from="canvas_layer/map_menus/object_editor/colour_picker_button" to="canvas_layer/map_menus/object_editor" method="_on_colour_picker_button_color_changed"]
 [connection signal="pressed" from="canvas_layer/map_menus/object_editor/close_button" to="canvas_layer/map_menus/object_editor" method="_on_close_button_pressed"]
+[connection signal="pressed" from="canvas_layer/map_menus/add_gps_menu/close_button" to="canvas_layer/map_menus" method="_on_close_button_pressed"]
+[connection signal="pressed" from="canvas_layer/map_menus/add_gps_menu/submit_button" to="canvas_layer/map_menus/add_gps_menu" method="_on_submit_button_pressed"]
 [connection signal="pressed" from="canvas_layer/data_manager/save_mapdata" to="canvas_layer/file_manager" method="_on_save_mapdata_pressed"]
 [connection signal="pressed" from="canvas_layer/file_manager/open_gamesave" to="canvas_layer/file_manager" method="_on_open_gamesave_pressed"]
 [connection signal="pressed" from="canvas_layer/file_manager/open_mapdata" to="canvas_layer/file_manager" method="_on_open_mapdata_pressed"]

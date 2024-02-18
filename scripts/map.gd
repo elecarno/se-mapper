@@ -91,4 +91,7 @@ func _process(_delta):
 		asteroids_holder.visible = !asteroids_holder.visible
 		
 	if Input.is_action_just_pressed("keybinds"):
-		get_node("canvas_layer/keybinds").visible = !get_node("canvas_layer/keybinds").visible 
+		get_node("canvas_layer/keybinds").visible = !get_node("canvas_layer/keybinds").visible
+		
+	if Input.is_action_just_pressed("tab") and !get_node("canvas_layer/file_manager").visible:
+		get_node("canvas_layer").visible = !get_node("canvas_layer").visible
