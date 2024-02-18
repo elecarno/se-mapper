@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://21exy75bqie0"]
+
+[ext_resource type="Texture2D" uid="uid://d2jmcyb3k4tm0" path="res://icons/cube.svg" id="1_jxbk3"]
+[ext_resource type="Script" path="res://scripts/interface/map_obj_button.gd" id="2_hxpuy"]
+
+[node name="map_obj_button" type="Button"]
+text = "Luma"
+icon = ExtResource("1_jxbk3")
+alignment = 2
+script = ExtResource("2_hxpuy")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
