@@ -76,7 +76,7 @@ func _on_submit_button_pressed():
 			map.spawn_planet(new_planet_idx)
 			map.update_object_buttons()
 			print("added" + str(gpsdata.planets[new_planet_idx]))
-			confirm_label.text = "Added Planet:" + str(gpsdata.planets[new_planet_idx][0])
+			confirm_label.text = "Added Planet: " + str(gpsdata.planets[new_planet_idx][0])
 		1:
 			# [id, position, is_static, display_name, faction, type, colour]
 			var new_station: Array = [000] # id
@@ -98,7 +98,7 @@ func _on_submit_button_pressed():
 			map.spawn_station(new_station_idx)
 			map.update_object_buttons()
 			print("added" + str(gpsdata.stations[new_station_idx]))
-			confirm_label.text = "Added Grid:" + str(gpsdata.stations[new_station_idx][3])
+			confirm_label.text = "Added Grid: " + str(gpsdata.stations[new_station_idx][3])
 		2:
 			pass
 			
