@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bt5wm378x7g3t"]
+
+[ext_resource type="Texture2D" uid="uid://cad3xqgk30mtj" path="res://models/grid.png" id="1_r7use"]
+
+[resource]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.27451, 0.27451, 0.27451, 0.352941)
+albedo_texture = ExtResource("1_r7use")
+texture_filter = 0

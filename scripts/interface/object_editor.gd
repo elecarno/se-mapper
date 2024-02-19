@@ -50,7 +50,7 @@ func initialise(type: String, i: int):
 	
 	visible = true
 
-func _process(delta):
+func _process(_delta):
 	if !visible: return
 	
 	match datatype:
@@ -78,17 +78,17 @@ func _process(delta):
 			objectdata[-1] = colvec_data
 			gpsdata.asteroids[data_idx] = objectdata
 
-func _on_name_edit_text_submitted(new_text):
+func _on_name_edit_text_submitted(_new_text):
 	emit_signal("update_display")
 	map.update_object_buttons()
 
-func _on_colour_picker_button_color_changed(color):
+func _on_colour_picker_button_color_changed(_color):
 	emit_signal("update_display")
 
-func _on_type_edit_text_submitted(new_text):
+func _on_type_edit_text_submitted(_new_text):
 	emit_signal("update_display")
 
-func _on_faction_edit_text_submitted(new_text):
+func _on_faction_edit_text_submitted(_new_text):
 	emit_signal("update_display")
 
 func _on_close_button_pressed():

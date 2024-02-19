@@ -9,7 +9,7 @@ extends Control
 @onready var para_2: LineEdit = get_node("para_2")
 @onready var map: map_controller = get_parent().get_parent().get_parent()
 
-func _process(delta):
+func _process(_delta):
 	if type_select.selected == -1:
 		submit_button.disabled = true
 		submit_button.text = "Select type to add GPS"
@@ -28,7 +28,7 @@ func _process(delta):
 		para_1.visible = true
 		para_2.visible = true
 
-func _on_type_select_item_selected(index):
+func _on_type_select_item_selected(_index):
 	match type_select.selected:
 		0:
 			submit_button.text = "Add GPS as Planet"

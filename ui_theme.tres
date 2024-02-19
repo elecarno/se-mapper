@@ -1,0 +1,31 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://7palklbdggyp"]
+
+[ext_resource type="FontFile" uid="uid://br57tnk2edoxb" path="res://atkinson_hyperlegible/AtkinsonHyperlegible-Regular.ttf" id="1_xgqj7"]
+[ext_resource type="FontFile" uid="uid://8r5rvn55ry0n" path="res://atkinson_hyperlegible/AtkinsonHyperlegible-Bold.ttf" id="2_xkevl"]
+[ext_resource type="FontFile" uid="uid://bn8vyw0fd7u0v" path="res://atkinson_hyperlegible/AtkinsonHyperlegible-BoldItalic.ttf" id="3_r5mj2"]
+[ext_resource type="FontFile" uid="uid://cjmn1rekqrpc7" path="res://atkinson_hyperlegible/AtkinsonHyperlegible-Italic.ttf" id="4_ctvei"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_px2sf"]
+
+[resource]
+default_font_size = 13
+Button/fonts/font = ExtResource("1_xgqj7")
+Fonts/fonts/large = ExtResource("1_xgqj7")
+Fonts/fonts/normal = ExtResource("1_xgqj7")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 14
+Label/fonts/font = ExtResource("1_xgqj7")
+Label/styles/normal = SubResource("StyleBoxEmpty_px2sf")
+LineEdit/fonts/font = ExtResource("1_xgqj7")
+RichTextLabel/fonts/bold_font = ExtResource("2_xkevl")
+RichTextLabel/fonts/bold_italics_font = ExtResource("3_r5mj2")
+RichTextLabel/fonts/italics_font = ExtResource("4_ctvei")
+RichTextLabel/fonts/normal_font = ExtResource("1_xgqj7")
+TextEdit/fonts/font = ExtResource("1_xgqj7")
